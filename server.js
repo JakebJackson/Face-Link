@@ -2,8 +2,10 @@
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const exphbs = require('express-handlebars');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const hbs = exphbs.create({});
+
 
 
 //internal Resources
@@ -25,10 +27,10 @@ const sess = {
   })
 };
 
-//Middle wear
+// Middle wear
 app.use(session(sess));
 
-app.engine('handlebars', exphbs.engine);
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 app.use(express.json());
@@ -38,5 +40,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log('Now listening'));
+    app.listen(PORT, () => console.log('Now listening on: http://localhost:' + PORT));
   });
