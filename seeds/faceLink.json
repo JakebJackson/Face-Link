@@ -1,5 +1,8 @@
 [
     {
-        
+        "id": 1,
+        "username": "TestUser",
+        "email": "test@gmail.com",
+        "password": "Test1234"
     }
 ]
