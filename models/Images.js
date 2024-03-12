@@ -6,7 +6,7 @@ class Images extends Model {}
 
 Images.init(
     {
-        id: {
+        image_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
@@ -16,5 +16,14 @@ Images.init(
             type: DataTypes.STRING,
             allowNull: true,
         }
+    },
+    {
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'images',
     }
-)
+);
+
+module.exports = Images;
