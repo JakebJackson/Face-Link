@@ -6,7 +6,7 @@ class Faces extends Model { }
 
 Faces.init(
     {
-        id: {
+        face_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
@@ -16,5 +16,14 @@ Faces.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+    },
+    {
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'faces',
     }
-)
+);
+
+module.exports = Faces;
