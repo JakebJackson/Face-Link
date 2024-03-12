@@ -2,8 +2,9 @@
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
-const SequlizeStore = require('connect-session-sequelize')(session.Store);
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const exphbs = require('express-handlebars');
+
 
 //internal Resources
 const sequelize = require('./config/connection');
@@ -27,7 +28,7 @@ const sess = {
 //Middle wear
 app.use(session(sess));
 
-app.engine('handlebars', hbs.engine);
+app.engine('handlebars', exphbs.engine);
 app.set('view engine', 'handlebars');
 
 app.use(express.json());
