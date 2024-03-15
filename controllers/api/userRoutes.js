@@ -36,8 +36,30 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.post('/signup', async (req, res) => {
+    try {
+        // Grab user data from request body
+        const { username, email, password } = req.body;
+
+        // Create a new user in database
+        const newUserData = await User.create({
+            username: username,
+            email: email,
+            password: password
+        });
+        
+
+        // Respond with the newly created user
+        res.json(newUserData);
+    } catch (err) {
+        // If an error occurs, respond with a 400 status and the error message
+        res.status(400).json(err);
+    }
+});
+
 router.post('/logout', (req, res) => {
     if (req.session.logged_in) {
+        req.session.logged_in = false;
         req.session.destroy(() => {
             res.status(204).end();        
         });

@@ -15,6 +15,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@bytescale/upload-widget": "^4.25.0",
     "bcrypt": "^5.1.1",
     "cloudinary": "^2.0.3",
     "connect-session-sequelize": "^7.1.7",
