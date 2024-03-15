@@ -1,10 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face-Link</title>
+</head>
+
+<body>
+    <header>
+        <h1>Face-Link</h1>
+    </header>
+    <main>
+        <section id="image-upload-section">
+            <h2>Upload Images</h2>
+            <div id="image-upload-widget-container">
+                <!-- This div will hold the image upload widget -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Uploader</h2>
+
+                        <div id="upload-container"
+                            style="position: relative; margin: 0 auto; width: 80%; height: 350px;">
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <section id="user-databases-section">
+            <h2>User Databases</h2>
+            <div id="user-databases-container">
+                <!-- This div will display user-specific databases and images -->
+                {{#each users}}
+                <div class="user-database">
+                    <h3>{{this.name}}</h3>
+                    <div class="images">
+                        {{#each this.images}}
+                        <img src="{{this.url}}" alt="{{this.alt}}">
+                        {{/each}}
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </section>
+    </main>
+
+    <script src="https://js.bytescale.com/upload-widget/v4"></script>
+
+</body>
+
+</html>
 <div class="row">
     <div class="col-md-6">
         <h2>Uploader</h2>
 
-        <div id="upload-container"
-         style="position: relative; margin: 0 auto; width: 80%; height: 350px;">
+        <div id="upload-container" style="position: relative; margin: 0 auto; width: 80%; height: 350px;">
+        </div>
     </div>
-</div>
 
-<script src="./js/uploader.js"></script>
+    <script src="./js
