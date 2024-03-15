@@ -24,7 +24,7 @@ Images.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'user', // This should match the model name of the User model
+                model: 'User', // This should match the model name of the User model
                 key: 'id', // This should match the primary key of the User model
             },
         },

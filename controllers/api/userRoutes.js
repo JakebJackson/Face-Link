@@ -55,6 +55,13 @@ router.post('/signup', async (req, res) => {
         // If an error occurs, respond with a 400 status and the error message
         res.status(400).json(err);
     }
+
+    req.session.save(() => {
+        req.session.user_id = userData.id;
+        req.session.logged_in = true;
+
+        res.json({ user: userData, message: 'Successfully logged in.' })
+    });
 });
 
 router.post('/logout', (req, res) => {
