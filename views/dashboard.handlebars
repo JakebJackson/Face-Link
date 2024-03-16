@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Face-Link</title>
 </head>
+
 <body>
     <header>
         <h1>Face-Link</h1>
@@ -14,7 +16,13 @@
             <h2>Upload Images</h2>
             <div id="image-upload-widget-container">
                 <!-- This div will hold the image upload widget -->
-            </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="upload-container"
+                            style="position: relative; margin: 0 auto; width: 80%; height: 350px;">
+                        </div>
+                    </div>
+                </div>
         </section>
 
         <section id="user-databases-section">
@@ -36,6 +44,7 @@
     </main>
 
     <script src="https://js.bytescale.com/upload-widget/v4"></script>
-
+    <script src="./js/uploader.js"></script>
 </body>
+
 </html>

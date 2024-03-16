@@ -15,7 +15,19 @@ Images.init(
         faces: {
             type: DataTypes.STRING,
             allowNull: true,
-        }
+        },
+        image_url: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        user_id: { // Foreign key to reference the User model
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'User', // This should match the model name of the User model
+                key: 'id', // This should match the primary key of the User model
+            },
+        },
     },
     {
         sequelize,
