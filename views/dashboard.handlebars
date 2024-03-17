@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Face-Link</title>
 </head>
 
@@ -29,16 +30,24 @@
             <h2>User Databases</h2>
             <div id="user-databases-container">
                 <!-- This div will display user-specific databases and images -->
-                {{#each users}}
-                <div class="user-database">
-                    <h3>{{this.name}}</h3>
-                    <div class="images">
-                        {{#each this.images}}
-                        <img src="{{this.url}}" alt="{{this.alt}}">
+                <h3>{{user.username}}</h3>
+                    <div class="images container">
+                        <h4>Images</h4>
+                        {{#each user.images}}
+                            <img src="{{this.image_url}}" alt="{{this.alt}}" class="userImageItem">
                         {{/each}}
                     </div>
-                </div>
-                {{/each}}
+                    <div class="faces">
+                        <h4>Faces</h4>
+                        <div class="row"></div>
+                            {{#each user.faces}}
+                            <div class="col-md-6"></div>
+                                <h5>{{this.name}}</h5h5>
+                                <img src="{{this.face_image_url}}" alt="{{this.alt}}" class="userFaceItem">
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
             </div>
         </section>
     </main>
