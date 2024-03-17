@@ -38,6 +38,7 @@ router.post('/login', async (req, res) => {
 
 router.post('/signup', async (req, res) => {
     try {
+        console.log(req.body);
         // Grab user data from request body
         const { username, email, password } = req.body;
 
@@ -48,20 +49,24 @@ router.post('/signup', async (req, res) => {
             password: password
         });
         
-
+        console.log(newUserData);
         // Respond with the newly created user
-        res.json(newUserData);
+        //res.json(newUserData);
+        
+
+        req.session.save(() => {
+            req.session.user_id = newUserData.id;
+            req.session.logged_in = true;
+    
+            res.json({ user: newUserData, message: 'Successfully logged in.' })
+        });
     } catch (err) {
         // If an error occurs, respond with a 400 status and the error message
+        console.log(err)
         res.status(400).json(err);
     }
 
-    req.session.save(() => {
-        req.session.user_id = userData.id;
-        req.session.logged_in = true;
 
-        res.json({ user: userData, message: 'Successfully logged in.' })
-    });
 });
 
 router.post('/logout', (req, res) => {
