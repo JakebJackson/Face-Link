@@ -1,7 +1,7 @@
 const router =  require('express').Router();
 const userRoutes = require('./userRoutes');
 const appRoutes = require('./uploadRoutes');
-const faceRoutes = require('./faceRoutes');
+const faceRoutes = require('./faceRoutes.js');
 
 router.use('/users',userRoutes);
 router.use('/app',appRoutes);
