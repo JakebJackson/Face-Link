@@ -33,9 +33,16 @@
                 <h3>{{user.username}}</h3>
                     <div class="images container">
                         <h4>Images</h4>
+                        <div class="row">
                         {{#each user.images}}
-                            <img src="{{this.image_url}}" alt="{{this.alt}}" class="userImageItem">
+                            <div class="card " style="width: 18rem;">
+                            <img class="card-img-top" class="userImageItem" src="{{this.image_url}}" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-text">{{this.description}}</p>
+                            </div>
+                            </div>
                         {{/each}}
+                        </div>
                     </div>
                     <div class="faces">
                         <h4>Faces</h4>
