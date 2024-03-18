@@ -49,7 +49,7 @@ router.post('/signup', async (req, res) => {
             password: password
         });
         
-        console.log(newUserData);
+        //console.log(newUserData);
         // Respond with the newly created user
         //res.json(newUserData);
         

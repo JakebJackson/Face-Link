@@ -6,9 +6,8 @@
 
 const getFaceDataforHTMLElement = async (input)=>
 {
-  const Model =  await faceapi.nets.tinyFaceDetector.loadFromUri('./faceModels');  
+  const Model =  await faceapi.nets.tinyFaceDetector;  
     
-  const detections1 = await faceapi.detectAllFaces(input, new faceapi.SsdMobilenetv1Options())
   const detections2 = await faceapi.detectAllFaces(input, new faceapi.TinyFaceDetectorOptions())
     console.log(detections1, detections2);
 }
