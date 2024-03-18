@@ -32,23 +32,27 @@
             <div id="user-databases-container">
                 <!-- This div will display user-specific databases and images -->
                 <h3>{{user.username}}</h3>
-                    <div class="images container">
-                        <h4>Images</h4>
-                        {{#each user.images}}
-                            <img src="{{this.image_url}}" alt="{{this.alt}}" class="userImageItem"  id="imageID-{{this.image_id}}">
-                        {{/each}}
+                <div class="images container">
+                    <h4>Images</h4>
+                    {{#each user.images}}
+                    <div class="col-md-6">
+                        <img src="{{this.image_url}}" alt="{{this.alt}}" class="userImageItem"
+                            id="imageID-{{this.image_id}}">
+                        <button id="delete-button-{{this.image_id}}" class="delete-button">DELETE</button>
                     </div>
-                    <div class="faces">
-                        <h4>Faces</h4>
-                        <div class="row"></div>
-                            {{#each user.faces}}
-                            <div class="col-md-6"></div>
-                                <h5>{{this.name}}</h5h5>
-                                <img src="{{this.face_image_url}}" alt="{{this.alt}}" class="userFaceItem">
-                            </div>
-                            {{/each}}
-                        </div>
-                    </div>
+                    {{/each}}
+                </div>
+                <div class="faces">
+                    <h4>Faces</h4>
+                    <div class="row"></div>
+                    {{#each user.faces}}
+                    <div class="col-md-6"></div>
+                    <h5>{{this.name}}</h5>
+                    <img src="{{this.face_image_url}}" alt="{{this.alt}}" class="userFaceItem">
+                </div>
+                {{/each}}
+            </div>
+            </div>
             </div>
         </section>
     </main>
@@ -57,7 +61,7 @@
     <script src="./js/uploader.js"></script>
     <script src="./js/logout.js"></script>
     <script src="./js/faceRecognition.js"></script>
-    
+
 </body>
 
 </html>

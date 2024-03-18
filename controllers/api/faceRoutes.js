@@ -36,4 +36,19 @@ function getDirectoryContent(dir, arr) {
     });
 }
 */
+
+router.post('/fetch_external_image', async (req, res) => {
+    try {
+        const reqData = req.body;
+        const userId = req.session.user_id;
+
+        console.log(reqData);
+
+        // Send response after all images are created
+        res.json(reqData);
+    } catch (err) {
+        res.status(400).json(err);
+    }
+});
+
 module.exports = router;

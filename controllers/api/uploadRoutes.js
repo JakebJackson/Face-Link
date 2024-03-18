@@ -37,4 +37,18 @@ router.post('/upload', async (req, res) => {
     }
 });
 
+router.delete('/delete/:id', async (req, res) => {
+    try {
+        const imageId = parseInt(req.params.id); // Parse req.params.id to integer
+        console.log(req.params.id);
+        
+        await Images.destroy({ where: { image_id: imageId } });
+
+        res.status(204).end(); // Send a success response
+    } catch (error) {
+        console.error('Error deleting image:', error);
+        res.status(500).json({ error: 'Internal Server Error' }); // Send an error response
+    }
+});
+
 module.exports = router;

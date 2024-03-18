@@ -1,8 +1,4 @@
-//const faceapi = require('face-api.js');
-
-
-/*
-
+/*const faceapi = require('face-api.js');
 
 const getFaceDataforHTMLElement = async (input)=>
 {
@@ -23,5 +19,5 @@ const findFacesInImages = (faceIDArr,ImgArr) =>
 
 }
 
-const input = document.getElementById('imageID-5');
+const input = document.getElementById('imageID-1');
 getFaceDataforHTMLElement(input);*/
