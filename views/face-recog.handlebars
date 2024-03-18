@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.20.1/dist/face-api.js"></script>
+    <script src="js/face-api-example/commons.js"></script>
+  <script src="js/face-api-example/faceDetectionControls.js"></script>
+  <script src="js/face-api-example/imageSelectionControls.js"></script>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+</head>
+<body>
+  <div id="navbar"></div>
+  <div class="center-content page-container">
+    <div class="progress" id="loader">
+      <div class="indeterminate"></div>
+    </div>
+    <div style="position: relative" class="margin">
+      {{#each user.images}}
+        <img src="{{this.image_url}}" alt="{{this.alt}}" class="userImageItem"  id="imageID-{{this.image_id}}">
+      {{/each}}
+      <img id="inputImg" src="" style="max-width: 800px;" />
+      <canvas id="overlay" />
+    </div>
+    <div id="facesContainer"></div>
+
+    <div class="row side-by-side">
+      <!-- image_selection_control -->
+      <div id="selectList"></div>
+      
+      <!-- image_selection_control -->
+    </div>
+
+    <!-- tiny_face_detector_controls -->
+    <span id="tiny_face_detector_controls">
+      <div class="row side-by-side">
+        <div class="row input-field" style="margin-right: 20px;">
+          <select id="inputSize">
+            <option value="" selected>Input Size:</option>
+            <option value="160">160 x 160</option>
+            <option value="224">224 x 224</option>
+            <option value="320">320 x 320</option>
+            <option value="416">416 x 416</option>
+            <option value="512">512 x 512</option>
+            <option value="608">608 x 608</option>
+          </select>
+          <label>Input Size</label>
+        </div>
+        <div class="row">
+          <label for="scoreThreshold">Score Threshold:</label>
+          <input disabled value="0.5" id="scoreThreshold" type="text" class="bold">
+        </div>
+        <button onclick="onDecreaseScoreThreshold()"><i >-</i></button>
+        <button onclick="onIncreaseScoreThreshold()" ><i >+</i></button>
+      </div>
+    </span>
+    <!-- tiny_face_detector_controls -->
+
+  </div>
+
+  <script>
+
+    async function updateResults() {
+      if (!isFaceDetectionModelLoaded()) {
+        return
+      }
+
+      const inputImgEl = $('#inputImg').get(0)
+      //const inputImgEl = $('#imageID-5').get(0)
+      const options = getFaceDetectorOptions()
+
+      const detections = await faceapi.detectAllFaces(inputImgEl, options)
+      const faceImages = await faceapi.extractFaces(inputImgEl, detections)
+
+      displayExtractedFaces(faceImages)
+    }
+
+    function displayExtractedFaces(faceImages) {
+      const canvas = $('#overlay').get(0)
+      faceapi.matchDimensions(canvas, $('#inputImg').get(0))
+
+      $('#facesContainer').empty()
+      faceImages.forEach(canvas => $('#facesContainer').append(canvas))
+    }
+
+    async function run() {
+      // load face detection model
+      await changeFaceDetector(selectedFaceDetector)
+
+      // start processing image
+      updateResults()
+    }
+
+    $(document).ready(function() {
+      renderNavBar('#navbar', 'face_extraction')
+      initImageSelectionControls()
+      initFaceDetectionControls()
+      run()
+    })
+  </script>
+</body>
+</html>
