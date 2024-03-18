@@ -1,5 +1,5 @@
 const router = require('express').Router();
-
+/*
 router.post('/loadModels', async (req, res) => {
     try {
         var filePath = path.join(path.resolve(__dirname, '..'), '/public/weights');
@@ -35,5 +35,5 @@ function getDirectoryContent(dir, arr) {
         }
     });
 }
-
+*/
 module.exports = router;
