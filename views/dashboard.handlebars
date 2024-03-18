@@ -38,7 +38,7 @@
                     <div class="col-md-6">
                         <img src="{{this.image_url}}" alt="{{this.alt}}" class="userImageItem"
                             id="imageID-{{this.image_id}}">
-                        <button id="delete-button-{{this.image_id}}" class="delete-button">DELETE</button>
+                        <button id="delete-button-{{this.image_id}}" class="delete-button" data-api-key="{{apiKey}}">DELETE</button>
                     </div>
                     {{/each}}
                 </div>
@@ -57,10 +57,13 @@
         </section>
     </main>
 
+    <script>
+        window.apiKey = "{{apiKey}}";
+    </script>
+
     <script src="https://js.bytescale.com/upload-widget/v4"></script>
     <script src="./js/uploader.js"></script>
     <script src="./js/logout.js"></script>
-    <script src="./js/faceRecognition.js"></script>
 
 </body>
 

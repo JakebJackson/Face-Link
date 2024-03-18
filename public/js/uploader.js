@@ -52,7 +52,7 @@ async function deleteFile(params) {
         headers: Object.fromEntries(entries({
             "Authorization": `Bearer ${params.apiKey}`,
         }))
-    });
+    })
 
     // response try catch method for removing the data from our database.
     try {
@@ -92,16 +92,12 @@ deleteButtons.forEach(button => {
         const imgPath = imgSplit[1];
         const imgId = getImgId[1];
 
-        console.log(imgPath);
-        console.log(imgId);
-
-
         // Do something with the img element
         console.log(imgElement.src);
 
         deleteFile({
             accountId: "12a1ys6",
-            apiKey: 'secret_12a1ys62WZ2BFqA46255d2jkmJji',
+            apiKey: apiKey,
             id: imgId,
             querystring: {
                 filePath: imgPath

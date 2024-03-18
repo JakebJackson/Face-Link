@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User , Images, Faces} = require('../models');
 const withAuth = require('../utils/auth');
+const dotenv = require('dotenv').config();
 
 router.get('/', withAuth, async (req, res) => {
     try {
@@ -16,6 +17,7 @@ router.get('/', withAuth, async (req, res) => {
       res.render('dashboard', {
         user,
         logged_in: req.session.logged_in,
+        apiKey: process.env.API_KEY,
       });
     } catch (err) {
       res.status(500).json(err);
