@@ -82,10 +82,10 @@ Then navigate to the link provided in the command line.
 https://github.com/JakebJackson/Face-Link
 
 ## Heroku Hosting
-
+https://morning-harbor-41329-82d98812097e.herokuapp.com/
 
 ## Screenshots / Video of Completed Challenge
-
+![completed application](/images/screenshot.png)
 
 
 ## License
