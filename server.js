@@ -2,8 +2,11 @@
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
-const SequlizeStore = require('connect-session-sequelize')(session.Store);
 const exphbs = require('express-handlebars');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const hbs = exphbs.create({});
+
+
 
 //internal Resources
 const sequelize = require('./config/connection');
@@ -24,7 +27,7 @@ const sess = {
   })
 };
 
-//Middle wear
+// Middle wear
 app.use(session(sess));
 
 app.engine('handlebars', hbs.engine);
@@ -32,10 +35,12 @@ app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, './public')));
+app.use(express.static(path.join(__dirname, './weights')));
+app.use(express.static(path.join(__dirname, './images')));
 
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log('Now listening'));
+    app.listen(PORT, () => console.log('Now listening on: http://localhost:' + PORT));
   });

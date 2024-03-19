@@ -23,12 +23,13 @@ User.init(
         username: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true,
+            unique: false,
             validate: {
-                len: [5],
+                len: [2],
             },
         },
         email: {
+            type: DataTypes.STRING,
             allowNull: false,
             unique: true,
             validate: {
@@ -39,16 +40,23 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                len: [6],
+                len: [8],
             },
         },
     },
     {
         // Encryption for storing passwords using bcrypt.
         hooks: {
-            async beforeCreate(newUserData) {
-                newUserData.password = await bcrypt.hash(newUserData.password, 10);
-                return newUserData;
+            beforeCreate: async (newUserData) => {
+                try {
+                    if (newUserData.password) {
+                        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+                    }
+                    return newUserData;
+                } catch (error) {
+                    console.error('Error hashing password:', error);
+                    throw new Error('Error hashing password');
+                }
             },
         },
         // Properties for the table as a whole.
