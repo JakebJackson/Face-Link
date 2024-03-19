@@ -1,6 +1,7 @@
 // Get delete buttons for deleting images.
 const deleteButtons = document.querySelectorAll('.delete-button');
 const downloadButtons = document.querySelectorAll('.download-button');
+
 // Options for bytescale use
 const options = {
     apiKey: "public_12a1ys62u7uydXDF6tT3LtQp6w4C", // Get API keys from: www.bytescale.com
@@ -158,3 +159,4 @@ downloadButtons.forEach(button => {
 
     })
 });
+
