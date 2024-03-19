@@ -1,27 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+<main>
+    <section id="userinfo" class="card">
+        <div class="card-body">
+            <h2>Username: {{user.username}}</h2>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <title>Face-Link</title>
-</head>
-
-<body>
-    <header>
-        <h1>User Profile</h1>
-    </header>
-    <main>
-        <section id="userinfo" class="card">
-          <div class="card-body">
-            <h2>{{user.username}}</h2>
-
-            <span id="user-email">{{user.email}}</span>
-                </div>
-        </section>
-    </main>
-    <script src="./js/logout.js"></script>
-</body>
-
-</html>
+            <span id="user-email">Email: {{user.email}}</span>
+        </div>
+    </section>
+</main>

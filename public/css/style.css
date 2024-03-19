@@ -126,7 +126,7 @@ input[type="password"] {
     border-radius: 4px;
 }
 
-button {
+.no-button {
     padding: 12px;
     margin-top: 10px;
     background-color: #4caf50; /* Green */
@@ -137,7 +137,7 @@ button {
     transition: background-color 0.3s;
 }
 
-button:hover {
+.no-button:hover {
     background-color: #45a049; /* Darker green */
 }
 
