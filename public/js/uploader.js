@@ -81,28 +81,6 @@ async function deleteFile(params) {
     }
 }
 
-// Logic for when user downloads an image.
-async function downloadFile(params) {
-    const baseUrl = "https://upcdn.io";
-    const path = `/${params.accountId}/raw${params.filePath}`;
-    const entries = obj => Object.entries(obj).filter(([, val]) => (val ?? null) !== null);
-    const query = entries(params.querystring ?? {})
-        .flatMap(([k, v]) => Array.isArray(v) ? v.map(v2 => [k, v2]) : [[k, v]])
-        .map(kv => kv.join("=")).join("&");
-    const response = await fetch(`${baseUrl}${path}${query.length > 0 ? "?" : ""}${query}`, {
-        method: "GET",
-        headers: Object.fromEntries(entries({
-            "Authorization": params.apiKey === undefined ? undefined : `Bearer ${params.apiKey}`,
-        }))
-    });
-    if (Math.floor(response.status / 100) !== 2) {
-        const result = await response.json();
-        throw new Error(`Bytescale API Error: ${JSON.stringify(result)}`);
-    }
-    return await response.blob();
-}
-
-
 
 // Create event listener for each event button.
 deleteButtons.forEach(button => {
@@ -138,25 +116,21 @@ downloadButtons.forEach(button => {
         event.preventDefault();
         const parentElement = event.target.parentElement.parentElement;
         const imgElement = parentElement.querySelector('img');
-        const imgSplit = imgElement.src.split('raw');
-        const imgPath = imgSplit[1];
-        console.log(imgPath);
+        const imgSrc = imgElement.src;
 
-        downloadFile({
-            accountId: "12a1ys6",
-            filePath: imgPath,
-            apiKey: "public_12a1ys62u7uydXDF6tT3LtQp6w4C",
-            querystring: {
-                download: true,
-            }
-        }).then(
-            blob => {
+        fetch(imgSrc)
+            .then(response => response.blob())
+            .then(blob => {
                 const objectUrl = window.URL.createObjectURL(blob);
-                window.location.assign(objectUrl);
-            },
-            error => console.error(error)
-        );
-
+                const downloadLink = document.createElement('a');
+                downloadLink.style.display = 'none';
+                downloadLink.href = objectUrl;
+                downloadLink.download = ''; // This will prompt a download dialog
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            })
+            .catch(error => console.error('Error fetching image:', error));
     })
 });
 
