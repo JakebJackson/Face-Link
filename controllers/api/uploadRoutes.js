@@ -7,10 +7,6 @@ router.post('/upload', async (req, res) => {
         const reqData = req.body;
         const userId = req.session.user_id;
         const createdImages = [];
-        console.log(`UserID: ${userId}`);
-        console.log('Returned Data:', reqData);
-        console.log('Object:', reqData[0]);
-        console.log('File URL:', reqData[0].fileUrl);
 
         for (let i = 0; i < reqData.length; i++) {
             try {

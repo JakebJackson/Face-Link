@@ -1,70 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.20.1/dist/face-api.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <title>Face-Link</title>
-</head>
-
-<body>
-    <header>
-        <h1>Face-Link</h1>
-    </header>
-    <main>
-        <section id="image-upload-section">
-            <h2>Upload Images</h2>
-            <div id="image-upload-widget-container">
-                <!-- This div will hold the image upload widget -->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div id="upload-container"
-                            style="position: relative; margin: 0 auto; width: 80%; height: 350px;">
-                        </div>
+<main>
+    <section id="image-upload-section">
+        <h2>Upload Images</h2>
+        <div id="image-upload-widget-container">
+            <!-- This div will hold the image upload widget -->
+            <div class="row">
+                <div>
+                    <div id="upload-container" class="my-5"
+                        style="position: relative; margin: 0 auto; width: 90%; height: 700px;">
                     </div>
                 </div>
-        </section>
+            </div>
+    </section>
 
-        <section id="user-databases-section">
-            <h2>User Databases</h2>
-            <div id="user-databases-container">
-                <!-- This div will display user-specific databases and images -->
-                <h3>{{user.username}}</h3>
-                <div class="images container">
-                    <h4>Images</h4>
+    <section id="user-databases-section">
+        <h2>Your database:</h2>
+        <div id="user-databases-container" class="container">
+            <!-- This div will display user-specific databases and images -->
+            <h3 class="m-5">Welcome back: {{user.username}}</h3>
+            <div class="images container-lg">
+                <div class="row">
                     {{#each user.images}}
-                    <div class="col-md-6">
-                        <img src="{{this.image_url}}" alt="{{this.alt}}" class="userImageItem"
-                            id="imageID-{{this.image_id}}">
-                        <button id="delete-button-{{this.image_id}}" class="delete-button" data-api-key="{{apiKey}}">DELETE</button>
+                    <div class="card w-25">
+                        <img src="{{this.image_url}}" class="border border-black border-2 mt-3 w-100 h-100"
+                            alt="{{this.alt}}" class="userImageItem" id="imageID-{{this.image_id}}">
+                        <div class="card-body btn-group" role="group">
+                            <button id="delete-button-{{this.image_id}}"
+                                class="btn btn-danger delete-button">Delete</button>
+                            <button id="download-button-{{this.image_id}}"
+                                class="btn btn-success download-button">Download</button>
+                        </div>
                     </div>
                     {{/each}}
                 </div>
-                <div class="faces">
-                    <h4>Faces</h4>
-                    <div class="row"></div>
-                    {{#each user.faces}}
-                    <div class="col-md-6"></div>
-                    <h5>{{this.name}}</h5>
-                    <img src="{{this.face_image_url}}" alt="{{this.alt}}" class="userFaceItem">
-                </div>
-                {{/each}}
             </div>
-            </div>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
+</main>
 
-    <script>
-        window.apiKey = "{{apiKey}}";
-    </script>
-
-    <script src="https://js.bytescale.com/upload-widget/v4"></script>
-    <script src="./js/uploader.js"></script>
-    <script src="./js/logout.js"></script>
-
-</body>
-
-</html>
+<script src="https://js.bytescale.com/upload-widget/v4"></script>
