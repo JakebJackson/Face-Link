@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Images } = require('../../models');
+const { Images } = require('../../models').default;
 
 
 router.post('/upload', async (req, res) => {
