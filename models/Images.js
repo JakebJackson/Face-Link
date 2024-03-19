@@ -34,7 +34,7 @@ Images.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'images',
+        modelName: 'Images',
     }
 );
 
